@@ -1,0 +1,25 @@
+#favBtn{ 
+    position: absolute;
+    top: -1000px;
+}
+
+.favIcon{
+    display: inline-block;
+    font-family: "Segoe MDL2 Assets";
+    -webkit-app-region: no-drag;
+    background: transparent;
+    transition: background 0.5s;
+    text-align: center;
+    line-height: 24px;
+    border-radius: 2px;
+    width: 26px;
+}
+
+#favBtn + .favIcon::before{
+    content: '\E734';
+}
+
+#favBtn:checked + .favIcon::before {
+    content: '\E735';
+    color: yellow;
+}
