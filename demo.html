@@ -14,13 +14,25 @@
         <div id="app" class="oh-app-outer">
             <header class="oh-app-nav">
                 <div class="oh-nav-controlarea">
-                    <div class="oh-nav-flexcontrol"></div>
-                    <div class="oh-nav-center"><url-bar></url-bar></div>
-                    <div class="oh-nav-flexcontrol"></div>
+                    <div class="oh-nav-flexcontrol"><url-btn></url-btn></div>
+                    <div class="oh-nav-center">
+                        <url-btn></url-btn>
+                        <url-bar class="oh-urlbar"></url-bar>
+                        <url-btn></url-btn>
+                    </div>
+                    <div class="oh-nav-flexcontrol"><url-btn></url-btn></div>
                 </div>
             </header>
             <div class="oh-app-content">
+                <acc-panel class="oh-sid">
+                    <acc-item title='Tabs' active='true'>
+                    </acc-item>
+                    <acc-item title='Bookmarks'></acc-item>
+                    <acc-item title='History'></acc-item>
+                </acc-panel>
+                <div class="oh-views">
 
+                </div>
             </div>
         </div>
 

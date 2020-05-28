@@ -8,7 +8,7 @@ export class UrlButton extends HTMLElement {
     render() {
         this.shadowRoot.innerHTML = `
             <link rel='stylesheet' href='src/URLButton/style.css'/>
-            
+            <button class='btn'></button>
         `;
     }
 }

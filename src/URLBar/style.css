@@ -99,6 +99,8 @@ button, input[type=text] { border: none; }
 
 .Http::before {
     content: "Http";
+    margin-top: 1px;
+    display: block;
 }
 
 .Http {
@@ -107,6 +109,8 @@ button, input[type=text] { border: none; }
 
 .Https::before {
     content: "Https";
+    margin-top: 1px;
+    display: block;
 }
 
 .Https {
@@ -115,6 +119,8 @@ button, input[type=text] { border: none; }
 
 .Internal::before {
     content: "OhHai";
+    margin-top: 1px;
+    display: block;
 }
 
 .Internal {
@@ -124,6 +130,8 @@ button, input[type=text] { border: none; }
 
 .CirtError::before {
     content: "Error";
+    margin-top: 1px;
+    display: block;
 }
 
 .CirtError {
