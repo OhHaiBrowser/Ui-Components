@@ -8,7 +8,7 @@ export class FavoriteButton extends HTMLElement {
     }
     render() {
         this.shadowRoot.innerHTML = `
-            <link rel='stylesheet' href='src/FavoriteButton/style.css'/>
+            <link rel='stylesheet' href='src/URLBar/FavoriteButton/style.css'/>
             <input type='checkbox' id='favBtn' ${this._checked ? 'checked': ''}/>
             <label class='favIcon' for='favBtn'></label>
         `;
