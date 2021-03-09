@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+tab-element {
+    outline: none;
+}
+
+.app_outer {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    background: rgb(23 36 103);
+    overflow: hidden;
+}
+    .app_outer.mac {
+        flex-direction: row-reverse;
+    }
+    .app_outer > .timeline {
+        width: 350px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+        .timeline > header {
+            height: 30px;
+            display: flex;
+            flex-direction: row;
+            padding: 13px 13px 0 13px;
+        }
+        .app_outer.mac > .timeline > header {
+            flex-direction: row-reverse;
+        }
+
+        .timeline > .controls {
+            flex: auto;
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 45px);
+            
+        } 
+            .controls > web-controls {
+                margin: 0 13px;
+            }
+
+            .controls > .seperator {
+                height: 2px;
+                background-color: rgb(255 255 255 / 55%);
+                border-radius: 5px;
+                margin: 0 13px;
+            }
+            .controls > .scroll_pan {
+                flex: auto;
+                overflow-y: scroll;
+                padding: 0px 10px 0px 10px;
+                margin: 3px 3px;
+            }
+            .controls > .scroll_pan:hover {
+                padding: 0px 4.286px 0px 10px;
+            }
+                .controls > .scroll_pan::-webkit-scrollbar {
+                    width: 0px;
+                }
+                .controls > .scroll_pan:hover::-webkit-scrollbar {
+                    width: 6px;
+                }
+                
+                .controls > .scroll_pan::-webkit-scrollbar-thumb {
+                    opacity: 0.5;
+                    background: rgba(255, 255, 255, 0.2);
+                    transition: background 0.5s;
+                    border-radius: 10px; 
+                }
+                    .controls > .scroll_pan::-webkit-scrollbar-thumb:hover {
+                        background: rgba(255, 255, 255, 0.8); 
+                    }
+
+    .app_outer > #content {
+        flex: auto;
+        background: #fff;
+    }
+        .app_outer > #content > div {
+            height: 100%;
+            width: 100%;
+            outline: none;
+        }
+
+    .action_btn {
+        height: 22px;
+        width: 22px;
+        border-radius: 2px;
+        border: none;
+        background-color: rgb(255 255 255 / 55%);
+        outline: none;
+        cursor: pointer;    
+        display: block;
+        margin: 2.5px 0;
+    }
+        .action_btn:hover {
+            background-color: rgb(255 255 255 / 100%);
+        } 
+        .action_btn > svg {
+            margin: 2px;
+            color: rgb(0 0 0 / 55%);
+        }
+            .action_btn:hover > svg {
+                color: rgb(0 0 0 / 70%);
+            }

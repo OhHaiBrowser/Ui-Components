@@ -1,0 +1,13 @@
+:root{
+    --contextualMenuBg: #969cba;
+    --contextualMenuShadow: 1px 1px 10px #000;
+    --contextualMenuRadius: 5px;
+    --contextualMenuText: #000;
+
+    --contextualSubMenuBg: #fff;
+
+    --contextualHover: #fff;
+
+    --contextualOverflowIcon: #000;
+    --contextualSeperator: #000;
+}

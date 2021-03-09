@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Timeline</title>
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="plugins/contextual.theme.css">
+    <link rel="stylesheet" href="plugins/contextual.css">
+    <script src="controls.js" type="module"></script>
+</head>
+<body>
+    <div class="app_outer">
+        <div id="content">
+            <template>
+                <div></div>
+            </template>
+        </div>
+        <div class="timeline">
+            <header>
+                <hamburger-menu id="menuBtn"></hamburger-menu>
+            </header>
+            <div class="controls">
+                <web-controls id="webControls"></web-controls>
+                <span class="seperator"></span>
+                <div class="scroll_pan">
+                    <timeline-section title="Tabs">
+                        <div slot="action-btns">
+                            <a id="addTab" class="action_btn"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></a>
+                        </div>
+                        <div id='tabList'>
+                            <template>
+                                <tab-element></tab-element>
+                            </template>
+                        </div>
+                    </timeline-section>
+                    <timeline-section title="Bookmarks">
+                        <div slot="action-btns">
+                            <a id="addFav" class="action_btn"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></a>
+                        </div>  
+                        <favorites-list id="favList"></favorites-list>
+                    </timeline-section>
+                    <timeline-section title="History">
+                        <history-list id="histList"></history-list>
+                    </timeline-section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="plugins/nanotabs.js"></script>
+    <script src="plugins/contextual.js"></script>
+    <script src="startup.js"></script>
+</body>
+</html>
