@@ -16,7 +16,7 @@ export class TimelineSection extends HTMLElement {
                     }
                         .section > .heading > .title {
                             display: inline-block;
-                            color: #fff;
+                            color: #172467;
                             font-size: 20px;
                             line-height: 27px;
                             margin: 0;

@@ -5,12 +5,11 @@ export class Tab extends HTMLElement {
         super();
         this.attachShadow({mode:'open'});
         this.shadowRoot.innerHTML = `
+            <link rel="stylesheet" href="plugins/iconmonstr/css/iconmonstr-iconic-font.min.css">
             <style>
-                .tab_outer {
-                    height: 35px;
+                .tab_outer {;
                     background: rgb(255 255 255 / 55%);
                     border-radius: 2px;
-                    margin: 15px 0;
                     display:flex;
                     flex-direction: row;
                     box-sizing: border-box;
@@ -26,6 +25,7 @@ export class Tab extends HTMLElement {
                         background: rgb(255 255 255 / 70%);
                     }
                     .tab_outer.active {
+                        box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.25);
                         background: rgb(255 255 255 / 100%);
                     }
                 #tab_img {
@@ -62,24 +62,23 @@ export class Tab extends HTMLElement {
                         background: rgb(223 35 35 / 55%);
                     }
 
-                    #tab_close > svg {
+                    #tab_close > i {
+                        font-size: 8px;
                         display:block;
                         margin:0px 2px;
                         color: transparent;
                     }
-                        #tab_close:hover > svg {
+                        #tab_close:hover > i {
                             color: rgb(255 255 255 / 100%) !important;
                         }
-                        .tab_outer.active #tab_close > svg, .tab_outer:hover #tab_close > svg {
+                        .tab_outer.active #tab_close > i, .tab_outer:hover #tab_close > i {
                             color: rgb(0 0 0 / 55%);
                         }
             </style>
             <div class='tab_outer'>
                 <img id='tab_img'/>
                 <span id='tab_text'></span>
-                <button id='tab_close'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                </button>
+                <button id='tab_close'><i class="im im-x-mark"></i></button>
             </div>
         `;
         this.shadowRoot.querySelector('.tab_outer').addEventListener('click', () => {

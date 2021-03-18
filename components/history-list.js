@@ -76,7 +76,7 @@ export class HistoryList extends HTMLElement {
 
                     }
                         #histList > details > summary {
-                            color: #fff;
+                            color: #172467;
                             margin: 0;
                             font-size:16px;
                         }
@@ -120,8 +120,8 @@ export class HistoryList extends HTMLElement {
             el.addEventListener('navigate', (e) => {
                 this.dispatchEvent(new CustomEvent('item-click', {detail: {url: e.detail.url }}));
             });
-            el.addEventListener('context-click', (e) => {
-                this.dispatchEvent(new CustomEvent('item-context', {detail: {el: el }}));
+            el.addEventListener('contextmenu', (e) => {
+                this.dispatchEvent(new CustomEvent('item-context', {detail: {event: e}}));
             });
         });
     }

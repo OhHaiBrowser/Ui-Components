@@ -13,12 +13,15 @@ export class HamburgerMenu extends HTMLElement {
                         display: block;
                         height: 3px;
                         margin: 5px 2px;
-                        background-color: rgb(255 255 255 / 55%);
-                        transition: background 0.5s;
+                        background: var(--controls-icon-default);
+                        transition: background 0.2s;
                         border-radius: 5px;
                     }
                     .hamburger_menu:hover > span {
-                        background-color: rgb(255 255 255);
+                        background: var(--controls-icon-hover);
+                    }
+                    .hamburger_menu:active > span {
+                        background: var(--controls-icon-active);
                     }
             </style>
             <a class="hamburger_menu">

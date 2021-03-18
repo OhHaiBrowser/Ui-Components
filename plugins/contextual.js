@@ -5,6 +5,7 @@ class Contextual{
      * @param {number} opts.width sets the width of the menu including children
      * @param {boolean} opts.isSticky sets how the menu apears, follow the mouse or sticky
      * @param {Array<ContextualItem>} opts.items sets the default items in the menu
+     * @param {Event} opts.event Mouse/Click event this is called from
      */
     constructor(opts){   
         contextualCore.CloseMenu();
@@ -16,13 +17,12 @@ class Contextual{
             let item = new ContextualItem(i);
             this.menuControl.appendChild(item.element);
         });
-            
-        if(event != undefined){
-            event.stopPropagation()
+        
+        if(opts.event !== undefined) {
             document.body.appendChild(this.menuControl);
-            contextualCore.PositionMenu(this.position, event, this.menuControl);        
+            contextualCore.PositionMenu(this.position, opts.event, this.menuControl);  
         }
-
+      
         document.onclick = function(e){
             if(!e.target.classList.contains('contextualJs')){
                 contextualCore.CloseMenu();

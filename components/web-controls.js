@@ -5,14 +5,22 @@ export class WebControls extends HTMLElement {
         super();
         this.attachShadow({mode: 'open'});
         this.shadowRoot.innerHTML = `
+            <link rel="stylesheet" href="plugins/iconmonstr/css/iconmonstr-iconic-font.min.css">
             <style>
                 .web_controls {
                     padding: 20px 0;
                     display: flex;
                     flex-direction: row;
                 }
+                .web_controls > .nav_btn.back {
+                    border-radius: 2px 0 0 2px;
+                }
+                .web_controls > .nav_btn.forward {
+                    border-radius: 0px 2px 2px 0px;
+                }
+
                     .web_controls > .nav_btn {
-                        background: rgb(255 255 255 / 55%);
+                        background: var(--controls-default);      
                         transition: background 0.5s;
                         border: none;
                         height: 35px;
@@ -20,45 +28,59 @@ export class WebControls extends HTMLElement {
                         outline: none;
                         cursor: pointer;
                     }
-                        .web_controls > .nav_btn.hidden {
-                            display: none;
+                        .web_controls > .nav_btn:enabled:hover {
+                            background: var(--controls-hover);
                         }
-                        .web_controls > .nav_btn > svg {
-                            margin: 3px;
-                            color: rgb(0 0 0 / 55%);
+                        .web_controls > .nav_btn:disabled {
+                            cursor: default;
+                            background: var(--controls-disabled);
+                            box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.25);
                         }
-                        .web_controls > .nav_btn:hover > svg {
-                            color: rgb(0 0 0 / 70%);
-                        } 
 
-                    .web_controls > .nav_btn.back {
-                        background: rgb(255 255 255);
-                        border-radius: 2px 0 0 2px;
-                    }
-                    .web_controls > .nav_btn.forward {
-                        border-radius: 0px 2px 2px 0px;
-                    }
-                        .web_controls > .nav_btn:hover {
-                            background: rgb(255 255 255);
+                        .web_controls > .nav_btn:enabled:active {
+                            box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.25);
+                            background: var(--controls-active);
                         }
+                            .web_controls > .nav_btn.hidden {
+                                display: none;
+                            }
+                                .web_controls > .nav_btn > i {
+                                    font-size: 16px;
+                                    line-height: 35px;
+                                    text-align: center;
+                                    width: 100%;
+                                    height: 100%;
+                                    color: var(--controls-icon-default);
+                                }
+                                .web_controls > .nav_btn:disabled > i {
+                                    color: var(--controls-icon-disabled);
+                                }
+                                .web_controls > .nav_btn:enabled:hover > i {
+                                    color: var(--controls-icon-hover);
+                                } 
+                                .web_controls > .nav_btn:enabled:active > i {
+                                    color: var(--controls-icon-active);
+                                }
+
 
 
                     .web_controls > .url_outer {
                         flex: auto;
                         border-radius: 2px;
                         margin-left: 15px;
-                        background: rgb(255 255 255 / 55%);
+                        background: var(--controls-default);
                         transition: background 0.5s;
                         border: none;                     
                         outline: none;
                         display:flex;
                         flex-direction: row;
+                        box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.25);
                     }
                         .web_controls > .url_outer:hover{
-                            background: rgb(255 255 255 / 70%);
+                            background: var(--controls-hover);
                         }
                         .web_controls > .url_outer.active {
-                            background: rgb(255 255 255 / 100%);
+                            background: var(--controls-active);
                             margin-left: 0px
                         }
 
@@ -69,7 +91,8 @@ export class WebControls extends HTMLElement {
                             outline: none;
                             padding: 9px;
                             font-size: 14px;     
-                            background: transparent;                             
+                            background: transparent;
+                            width: 100px;                          
                         }
 
                         .web_controls > .url_outer > .refresh_btn {
@@ -82,26 +105,27 @@ export class WebControls extends HTMLElement {
                             border-radius: 0px 2px 2px 0px;
                             margin-right: 2px;
                         }
-                            .web_controls > .url_outer > .refresh_btn > svg {
-                                margin: 8px;   
-                                color: rgb(0 0 0 / 55%);
+                            .web_controls > .url_outer > .refresh_btn > i {
+                                font-size: 16px;
+                                line-height: 35px;
+                                text-align: center;
+                                width: 100%;
+                                height: 100%;  
+                                color: var(--controls-icon-default);
                             }
-                            .web_controls > .url_outer > .refresh_btn:hover > svg {
-                                color: rgb(0 0 0 / 70%);
+                            .web_controls > .url_outer > .refresh_btn:hover > i {
+                                color: var(--controls-icon-hover);
+                            }
+                            .web_controls > .url_outer > .refresh_btn:active > i {
+                                color: var(--controls-icon-active);
                             }
             </style>
             <div class='web_controls'>
-                <a class="nav_btn back">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                </a>
-                <a class="nav_btn forward">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </a>
+                <button class="nav_btn back"><i class="im im-angle-left"></i></button>
+                <button class="nav_btn forward" disabled><i class="im im-angle-right"></i></button>
                 <div class='url_outer'>
                     <input type="url" class="url_txt"/>
-                    <a class='refresh_btn'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rotate-cw"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
-                    </a>
+                    <a class='refresh_btn'><i class="im im-redo"></i></a>
                 </div>
                 
             </div>

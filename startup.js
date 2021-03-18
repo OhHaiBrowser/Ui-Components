@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('menuBtn').addEventListener('click', () => {
         new Contextual({
             isSticky: true,
+            event: event,
             items: [
                 {label: 'Settings', onClick: () => {  }}
             ]
@@ -76,6 +77,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         new Contextual({
             isSticky: false,
+            event: event,
             items: menuItems
         });
     });
@@ -99,6 +101,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
     //#endregion
 
     //#region Bookmark Events
+    favList.addEventListener('item-click', (e) => {
+        console.log(e.detail.url);
+        let tb = tc.addTab();
+        tb.tab.setAttribute('title','Tab 1');
+    });
+
+    favList.addEventListener('new-item', e => {
+        const item = e.detail.el;
+
+        item.addEventListener('contextmenu', function(e){
+            e.preventDefault();
+            new Contextual({
+                isSticky: false,
+                event: e,
+                items: [
+                    {label: 'test', onClick: () => {}}
+                ]
+            });
+        });
+
+    });
 
     favList.load([
         {title:'Link 1', url:'https://ohhaibrowser.com', icon: 'assets/favicon_default.png', timestamp: '2021-01-05T11:36:30.610Z'},
@@ -107,25 +130,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
         {title:'Link 4', url:'https://ohhaibrowser.com', icon: 'assets/favicon_default.png', timestamp: '2021-01-05T11:36:30.610Z'},
         {title:'Link 5', url:'https://ohhaibrowser.com', icon: 'assets/favicon_default.png', timestamp: '2021-01-05T11:36:30.610Z'},
         {title:'Link 6', url:'https://ohhaibrowser.com', icon: 'assets/favicon_default.png', timestamp: '2021-01-05T11:36:30.610Z'},
+        {title:'Link 6', url:'https://ohhaibrowser.com', icon: 'assets/favicon_default.png', timestamp: '2021-01-05T11:36:30.610Z'},
+        {title:'Link 6', url:'https://ohhaibrowser.com', icon: 'assets/favicon_default.png', timestamp: '2021-01-05T11:36:30.610Z'},
+        {title:'Link 6', url:'https://ohhaibrowser.com', icon: 'assets/favicon_default.png', timestamp: '2021-01-05T11:36:30.610Z'},
     ]);
 
-    favList.addEventListener('item-click', (e) => {
-        console.log(e.detail.url);
-        let tb = tc.addTab();
-        tb.tab.setAttribute('title','Tab 1');
-    });
 
-    favList.addEventListener('item-context', (e) => {
-        let item = e.detail.el;
-        console.log(item);
-        new Contextual({
-            isSticky: false,
-            items: [
-                {label: 'test', onClick: () => {}}
-            ]
-        });
-
-    });
 
     document.getElementById('addFav').addEventListener('click', () => {
         console.log('Add Bookmark');
@@ -154,10 +164,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     histList.addEventListener('item-context', function(e) {
-        let item = e.detail.el;
-        
+        let ogEvent = e.detail.event;
+        console.log(e, event, ogEvent);
         new Contextual({
             isSticky: false,
+            event: ogEvent,
             items: [
                 {label: 'test', onClick: () => {}}
             ]

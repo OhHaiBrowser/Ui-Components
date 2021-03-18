@@ -1,88 +1,98 @@
+:root {
+    --sidebar: #EFEFEF;
+
+    --controls-disabled: rgb(255 255 255 / 30%);
+    --controls-default: rgb(255 255 255 / 55%);
+    --controls-hover: rgb(255 255 255 / 70%);
+    --controls-active: rgb(255 255 255 / 100%);
+
+    --controls-icon-disabled: rgb(23 36 103 / 30%);
+    --controls-icon-default: rgb(23 36 103 / 55%);
+    --controls-icon-hover: rgb(23 36 103 / 70%);
+    --controls-icon-active: #172467;
+
+}
+
+* {box-sizing: border-box;}
 body {
     margin: 0;
+    font-size: 62.5%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-tab-element {
-    outline: none;
-}
-
 .app_outer {
-    position: absolute;
-    top: 0;
     width: 100vw;
     height: 100vh;
-    display: flex;
-    flex-direction: row;
-    background: rgb(23 36 103);
+    display: grid;
+    grid-template-columns: 300px auto 300px;
+    grid-template-rows: 35px auto;
+    grid-template-areas: 
+        "content content header"
+        "content content timeline";
+    background: var(--sidebar);
     overflow: hidden;
 }
     .app_outer.mac {
+        grid-template-areas: 
+        "header content content"
+        "timeline content content";
+    }
+
+    .app_outer > header {
+        grid-area: header;
+        display: flex;
+        flex-direction: row;
+        padding: 0px 13px;
+        margin-top: 10px;
+    }
+    .app_outer.mac > header {
         flex-direction: row-reverse;
     }
+
     .app_outer > .timeline {
-        width: 350px;
-        height: 100vh;
+        grid-area: timeline;
         display: flex;
         flex-direction: column;
-        box-sizing: border-box;
+        overflow: hidden;
     }
-        .timeline > header {
-            height: 30px;
-            display: flex;
-            flex-direction: row;
-            padding: 13px 13px 0 13px;
-        }
-        .app_outer.mac > .timeline > header {
-            flex-direction: row-reverse;
-        }
-
-        .timeline > .controls {
-            flex: auto;
-            display: flex;
-            flex-direction: column;
-            height: calc(100% - 45px);
-            
-        } 
-            .controls > web-controls {
-                margin: 0 13px;
+            .timeline > web-controls {
+                margin: 0 15px;
             }
 
-            .controls > .seperator {
+            .timeline > .seperator {
                 height: 2px;
-                background-color: rgb(255 255 255 / 55%);
+                background-color: var(--controls-default);
                 border-radius: 5px;
-                margin: 0 13px;
+                margin: 0 15px;
             }
-            .controls > .scroll_pan {
+            .timeline > .scroll_pan {
                 flex: auto;
-                overflow-y: scroll;
-                padding: 0px 10px 0px 10px;
-                margin: 3px 3px;
+                overflow-y: overlay;
+                padding: 0px 11px;
+                margin: 0px 4px;
             }
-            .controls > .scroll_pan:hover {
-                padding: 0px 4.286px 0px 10px;
-            }
-                .controls > .scroll_pan::-webkit-scrollbar {
+
+                .timeline > .scroll_pan::-webkit-scrollbar {
                     width: 0px;
                 }
-                .controls > .scroll_pan:hover::-webkit-scrollbar {
+                .timeline > .scroll_pan:hover::-webkit-scrollbar {
                     width: 6px;
                 }
                 
-                .controls > .scroll_pan::-webkit-scrollbar-thumb {
+                .timeline > .scroll_pan::-webkit-scrollbar-thumb {
                     opacity: 0.5;
-                    background: rgba(255, 255, 255, 0.2);
+                    background: rgb(23 36 103 / 20%);
                     transition: background 0.5s;
                     border-radius: 10px; 
                 }
-                    .controls > .scroll_pan::-webkit-scrollbar-thumb:hover {
-                        background: rgba(255, 255, 255, 0.8); 
+                    .timeline > .scroll_pan::-webkit-scrollbar-thumb:hover {
+                        background: rgb(23 36 103 / 80%);
                     }
 
     .app_outer > #content {
-        flex: auto;
+        grid-area: content;
         background: #fff;
+        box-shadow: 0px 0px 5px #000;
     }
         .app_outer > #content > div {
             height: 100%;
@@ -95,19 +105,47 @@ tab-element {
         width: 22px;
         border-radius: 2px;
         border: none;
-        background-color: rgb(255 255 255 / 55%);
+        background-color: var(--controls-default);
         outline: none;
         cursor: pointer;    
         display: block;
         margin: 2.5px 0;
     }
         .action_btn:hover {
-            background-color: rgb(255 255 255 / 100%);
-        } 
-        .action_btn > svg {
-            margin: 2px;
-            color: rgb(0 0 0 / 55%);
+            background-color: var(--controls-hover);
         }
-            .action_btn:hover > svg {
-                color: rgb(0 0 0 / 70%);
+        .action_btn:active {
+            background-color: var(--controls-active);
+        }
+        .action_btn > i {
+            height: 100%;
+            width: 100%;
+            font-size: 12px;
+            text-align: center;
+            line-height: 22px;
+            color: var(--controls-icon-default);
+        }
+            .action_btn:hover > i {
+                color: var(--controls-icon-hover);
             }
+            .action_btn:active > i {
+                color: var(--controls-icon-active);
+            }
+
+
+.nanotabs_tabList {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+    tab-element {
+        outline: none;
+    }
+    tab-element[mode="pinned"] {
+        
+    }
+    tab-element:not([mode="pinned"]) {
+        grid-column: span 6;
+    }
