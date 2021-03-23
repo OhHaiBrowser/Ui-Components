@@ -8,7 +8,7 @@ export class WebControls extends HTMLElement {
             <link rel="stylesheet" href="plugins/iconmonstr/css/iconmonstr-iconic-font.min.css">
             <style>
                 .web_controls {
-                    padding: 20px 0;
+                    padding: 15px 0;
                     display: flex;
                     flex-direction: row;
                 }
@@ -53,12 +53,14 @@ export class WebControls extends HTMLElement {
                                     color: var(--controls-icon-default);
                                 }
                                 .web_controls > .nav_btn:disabled > i {
+                                    font-size: 14px;
                                     color: var(--controls-icon-disabled);
                                 }
                                 .web_controls > .nav_btn:enabled:hover > i {
                                     color: var(--controls-icon-hover);
                                 } 
                                 .web_controls > .nav_btn:enabled:active > i {
+                                    font-size: 14px;
                                     color: var(--controls-icon-active);
                                 }
 
@@ -94,38 +96,13 @@ export class WebControls extends HTMLElement {
                             background: transparent;
                             width: 100px;                          
                         }
-
-                        .web_controls > .url_outer > .refresh_btn {
-                            transition: background 0.5s;
-                            border: none;
-                            height: 35px;
-                            width: 35px;
-                            outline: none;
-                            cursor: pointer;
-                            border-radius: 0px 2px 2px 0px;
-                            margin-right: 2px;
-                        }
-                            .web_controls > .url_outer > .refresh_btn > i {
-                                font-size: 16px;
-                                line-height: 35px;
-                                text-align: center;
-                                width: 100%;
-                                height: 100%;  
-                                color: var(--controls-icon-default);
-                            }
-                            .web_controls > .url_outer > .refresh_btn:hover > i {
-                                color: var(--controls-icon-hover);
-                            }
-                            .web_controls > .url_outer > .refresh_btn:active > i {
-                                color: var(--controls-icon-active);
-                            }
             </style>
             <div class='web_controls'>
-                <button class="nav_btn back"><i class="im im-angle-left"></i></button>
+                <button class="nav_btn back" disabled><i class="im im-angle-left"></i></button>
+                <button class='nav_btn refresh'><i class="im im-redo"></i></button>
                 <button class="nav_btn forward" disabled><i class="im im-angle-right"></i></button>
                 <div class='url_outer'>
                     <input type="url" class="url_txt"/>
-                    <a class='refresh_btn'><i class="im im-redo"></i></a>
                 </div>
                 
             </div>
@@ -134,18 +111,20 @@ export class WebControls extends HTMLElement {
         const urlBar = this.shadowRoot.querySelector('.url_txt');
         const backBtn = this.shadowRoot.querySelector('.back');
         const forwardBtn = this.shadowRoot.querySelector('.forward');
-        const refreshBtn = this.shadowRoot.querySelector('.refresh_btn');
+        const refreshBtn = this.shadowRoot.querySelector('.refresh');
 
         urlBar.addEventListener('focus', () => {
             urlOuter.classList.add('active');
             backBtn.classList.add('hidden');
             forwardBtn.classList.add('hidden');
+            refreshBtn.classList.add('hidden');
 
         });
         urlBar.addEventListener('blur', () => {
             urlOuter.classList.remove('active');
             backBtn.classList.remove('hidden');
             forwardBtn.classList.remove('hidden');
+            refreshBtn.classList.remove('hidden');
         });
 
         backBtn.addEventListener('click', () => {

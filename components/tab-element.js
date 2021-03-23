@@ -18,8 +18,12 @@ export class Tab extends HTMLElement {
                     outline:none;
                 }
                 .tab_outer.pinned {
-                    display:inline-block;
-                    margin:0;
+                    margin: 0;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    aspect-ratio: 1/1;
                 }
                     .tab_outer:hover{
                         background: rgb(255 255 255 / 70%);

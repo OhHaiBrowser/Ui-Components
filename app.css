@@ -11,6 +11,10 @@
     --controls-icon-hover: rgb(23 36 103 / 70%);
     --controls-icon-active: #172467;
 
+
+    --timeline-grid-col: 6;
+    --timeline-grid-gap: 10;
+
 }
 
 * {box-sizing: border-box;}
@@ -62,14 +66,14 @@ body {
             .timeline > .seperator {
                 height: 2px;
                 background-color: var(--controls-default);
-                border-radius: 5px;
-                margin: 0 15px;
+                margin: 0;
+                box-shadow: 0px 0px 4px rgb(0 0 0 / 30%);
             }
             .timeline > .scroll_pan {
                 flex: auto;
                 overflow-y: overlay;
-                padding: 0px 11px;
-                margin: 0px 4px;
+                padding: 0px 15px;
+                margin: 0px;
             }
 
                 .timeline > .scroll_pan::-webkit-scrollbar {
@@ -83,7 +87,6 @@ body {
                     opacity: 0.5;
                     background: rgb(23 36 103 / 20%);
                     transition: background 0.5s;
-                    border-radius: 10px; 
                 }
                     .timeline > .scroll_pan::-webkit-scrollbar-thumb:hover {
                         background: rgb(23 36 103 / 80%);
@@ -135,11 +138,13 @@ body {
 
 .nanotabs_tabList {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 1fr;
+    grid-template-columns: repeat( var(--timeline-grid-col) , 1fr);
+    grid-auto-rows: 36.66px;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
 }
+
+
     tab-element {
         outline: none;
     }

@@ -4,6 +4,7 @@ import {TimelineSection} from './components/timeline-section.js';
 import {Tab} from './components/tab-element.js';
 import {FavoritesList, FavoritesItem} from './components/favorites-list.js';
 import {HistoryItem, HistoryList} from './components/history-list.js';
+import {FrameControls} from './components/frame_controls.js';
 
 // Ham Burger Menu
 customElements.define('hamburger-menu', HamburgerMenu);
@@ -20,3 +21,5 @@ customElements.define('favorites-list', FavoritesList);
 customElements.define('history-item', HistoryItem);
 // History list
 customElements.define('history-list', HistoryList);
+
+customElements.define('frame-controls', FrameControls);
