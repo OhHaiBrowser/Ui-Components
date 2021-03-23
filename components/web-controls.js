@@ -23,8 +23,8 @@ export class WebControls extends HTMLElement {
                         background: var(--controls-default);      
                         transition: background 0.5s;
                         border: none;
-                        height: 35px;
-                        width: 35px;
+                        height: var(--timeline-item-height);
+                        width: var(--timeline-item-width);
                         outline: none;
                         cursor: pointer;
                     }
@@ -46,7 +46,7 @@ export class WebControls extends HTMLElement {
                             }
                                 .web_controls > .nav_btn > i {
                                     font-size: 16px;
-                                    line-height: 35px;
+                                    line-height: var(--timeline-item-height);
                                     text-align: center;
                                     width: 100%;
                                     height: 100%;
@@ -67,6 +67,7 @@ export class WebControls extends HTMLElement {
 
 
                     .web_controls > .url_outer {
+                        height: var(--timeline-item-height);
                         flex: auto;
                         border-radius: 2px;
                         margin-left: 15px;
@@ -86,12 +87,17 @@ export class WebControls extends HTMLElement {
                             margin-left: 0px
                         }
 
+                        .web_controls > .url_outer > .cert {
+                            outline:none;
+                            border:none;
+                        }
+
                         .web_controls > .url_outer > .url_txt {
                             flex: auto;
                             border-radius: 0;
                             border: none;                     
                             outline: none;
-                            padding: 9px;
+                            padding: 10px;
                             font-size: 14px;     
                             background: transparent;
                             width: 100px;                          
@@ -102,6 +108,7 @@ export class WebControls extends HTMLElement {
                 <button class='nav_btn refresh'><i class="im im-redo"></i></button>
                 <button class="nav_btn forward" disabled><i class="im im-angle-right"></i></button>
                 <div class='url_outer'>
+                    <button class='cert'></button>
                     <input type="url" class="url_txt"/>
                 </div>
                 

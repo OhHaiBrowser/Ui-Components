@@ -7,9 +7,10 @@ export class FavoritesList extends HTMLElement {
             <style>
                 #favList {
                     display:grid;
-                    grid-template-columns: repeat(6, 1fr);
-                    grid-column-gap: 10px;
-                    grid-row-gap: 10px;
+                    grid-template-columns: repeat( var(--timeline-grid-col) , var(--timeline-item-width));
+                    grid-auto-rows: var(--timeline-item-height);
+                    grid-column-gap: var(--timeline-grid-gap);
+                    grid-row-gap: var(--timeline-grid-gap);
                 }
 
                     .favItem {
@@ -30,7 +31,7 @@ export class FavoritesList extends HTMLElement {
                         }
                     
                         .favItem > img {
-                            width: 20px;
+                            width: 16px;
                             box-sizing: border-box;
                         }
             </style>

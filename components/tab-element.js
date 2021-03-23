@@ -8,9 +8,12 @@ export class Tab extends HTMLElement {
             <link rel="stylesheet" href="plugins/iconmonstr/css/iconmonstr-iconic-font.min.css">
             <style>
                 .tab_outer {;
-                    background: rgb(255 255 255 / 55%);
+                    background: var(--controls-default);
                     border-radius: 2px;
+                    height: 100%;
+                    width: 100%;
                     display:flex;
+                    align-items: center;
                     flex-direction: row;
                     box-sizing: border-box;
                     user-select:none;
@@ -19,25 +22,34 @@ export class Tab extends HTMLElement {
                 }
                 .tab_outer.pinned {
                     margin: 0;
-                    width: 100%;
+                    
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     aspect-ratio: 1/1;
                 }
                     .tab_outer:hover{
-                        background: rgb(255 255 255 / 70%);
+                        background: var(--controls-hover);
                     }
                     .tab_outer.active {
                         box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.25);
-                        background: rgb(255 255 255 / 100%);
+                        background: var(--controls-active);
                     }
-                #tab_img {
-                    height: 16px;
-                    width: 16px;
-                    border-radius: 2px;
-                    margin: 9px;                
+                .square_outer {
+                    height:100%;
+                    aspect-ratio: 1/1;
+                    display:flex;
+                    align-items: center;
+                    justify-content: center;
                 }
+                .square_outer[hidden]{
+                    display:none;
+                }
+
+                    #tab_img {
+                        height: 16px;
+                        width: 16px;               
+                    }
                 #tab_text {
                     flex:auto;
                     font-size: 14px;
@@ -45,8 +57,7 @@ export class Tab extends HTMLElement {
                     line-height: 16px;
                     overflow: hidden;
                     white-space: nowrap;
-                    text-overflow: ellipsis;    
-                    margin: 9px 5px;        
+                    text-overflow: ellipsis;          
                 }
                 #tab_close {
                     height:16px;
@@ -55,7 +66,6 @@ export class Tab extends HTMLElement {
                     border:none;
                     background: transparent;
                     transition: background 0.25s;
-                    margin: 9px;
                     outline:none;
                     padding:0;
                 }
@@ -80,9 +90,13 @@ export class Tab extends HTMLElement {
                         }
             </style>
             <div class='tab_outer'>
-                <img id='tab_img'/>
+                <div class='square_outer'>
+                    <img id='tab_img'/>
+                </div>       
                 <span id='tab_text'></span>
-                <button id='tab_close'><i class="im im-x-mark"></i></button>
+                <div class='square_outer close'>
+                    <button id='tab_close'><i class="im im-x-mark"></i></button>
+                </div> 
             </div>
         `;
         this.shadowRoot.querySelector('.tab_outer').addEventListener('click', () => {
@@ -120,13 +134,13 @@ export class Tab extends HTMLElement {
             case 'pinned':
                 this.shadowRoot.querySelector('.tab_outer').classList.add('pinned');
                 this.shadowRoot.getElementById('tab_text').hidden = true;
-                this.shadowRoot.getElementById('tab_close').hidden = true;
+                this.shadowRoot.querySelector('.square_outer.close').hidden = true;
                 break;
             case 'default':
             default:
                 this.shadowRoot.querySelector('.tab_outer').classList.remove('pinned');
                 this.shadowRoot.getElementById('tab_text').hidden = false;
-                this.shadowRoot.getElementById('tab_close').hidden = false;
+                this.shadowRoot.querySelector('.square_outer.close').hidden = false;
         }
     }
 }

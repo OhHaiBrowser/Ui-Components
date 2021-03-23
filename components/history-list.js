@@ -5,12 +5,13 @@ export class HistoryItem extends HTMLElement {
         this.shadowRoot.innerHTML = `
             <style>
                 .histItem {
-                    height: 35px;
+                    height: var(--timeline-item-height);
                     background: rgb(255 255 255 / 55%);
                     transition: background 0.25s;
                     border-radius: 2px;
-                    margin: 15px 0;
+                    margin: 5px 0;
                     display:flex;
+                    align-items: center;
                     flex-direction: row;
                     box-sizing: border-box;
                     user-select:none;
@@ -19,11 +20,17 @@ export class HistoryItem extends HTMLElement {
                         background: rgb(255 255 255 / 70%);
                     }
 
+                    .square_outer {
+                        height:100%;
+                        aspect-ratio: 1/1;
+                        display:flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
                 #hist_img {
                     height: 16px;
-                    width: 16px;
-                    border-radius: 2px;
-                    margin: 9px;                
+                    width: 16px;               
                 }
                 #hist_text {
                     flex:auto;
@@ -32,18 +39,20 @@ export class HistoryItem extends HTMLElement {
                     line-height: 16px;
                     overflow: hidden;
                     white-space: nowrap;
-                    text-overflow: ellipsis;    
-                    margin: 9px 5px;        
+                    text-overflow: ellipsis;      
                 }
                 #hist_dt {
                     font-size: 14px;
+                    color: var(--controls-icon-active);
                     height: 16px;
                     line-height: 16px;
                     margin: 9px 14px 9px 5px;
                 }
             </style>
             <div class='histItem'>
-                <img id='hist_img'/>
+                <div class='square_outer'>
+                    <img id='hist_img'/>
+                </div>      
                 <span id='hist_text'></span>
                 <span id='hist_dt'></span>
             </div>

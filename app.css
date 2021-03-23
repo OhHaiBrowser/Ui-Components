@@ -11,10 +11,10 @@
     --controls-icon-hover: rgb(23 36 103 / 70%);
     --controls-icon-active: #172467;
 
-
     --timeline-grid-col: 6;
-    --timeline-grid-gap: 10;
-
+    --timeline-grid-gap: 10px; 
+    --timeline-item-width: 36.66px;
+    --timeline-item-height: 36.66px;
 }
 
 * {box-sizing: border-box;}
@@ -138,10 +138,10 @@ body {
 
 .nanotabs_tabList {
     display: grid;
-    grid-template-columns: repeat( var(--timeline-grid-col) , 1fr);
-    grid-auto-rows: 36.66px;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
+    grid-template-columns: repeat( var(--timeline-grid-col) , var(--timeline-item-width));
+    grid-auto-rows: var(--timeline-item-height);
+    grid-column-gap: var(--timeline-grid-gap);
+    grid-row-gap: var(--timeline-grid-gap);
 }
 
 
